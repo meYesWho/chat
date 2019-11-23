@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang=en style="background: #eee;">
+
+<head>
+	<meta charset=utf-8>
+	<meta http-equiv=X-UA-Compatible content="IE=edge">
+	<meta name=viewport content="width=device-width,initial-scale=1">
+	<link rel=icon href=favicon.ico>
+	<title>demo</title>
+	<link href=css/app.f6a86d32.css rel=preload as=style>
+	<link href=css/chunk-vendors.3788bb40.css rel=preload as=style>
+	<link href=js/app.374e1dd1.js rel=preload as=script>
+	<link href=js/chunk-vendors.11ca1f97.js rel=preload as=script>
+	<link href=css/chunk-vendors.3788bb40.css rel=stylesheet>
+	<link href=css/app.f6a86d32.css rel=stylesheet>
+	<link href=css/app.db0f031b.css rel=preload as=style>
+	<link href=css/chunk-vendors.8c92b124.css rel=preload as=style>
+	<link href=js/app.bca46168.js rel=preload as=script>
+	<link href=js/chunk-vendors.0c898538.js rel=preload as=script>
+	<link href=css/chunk-vendors.8c92b124.css rel=stylesheet>
+	<link href=css/app.db0f031b.css rel=stylesheet>
+</head>
+
+<body><noscript>
+	<strong>We're sorry but demo doesn't work properly without JavaScript enabled. Please enable it to
+			continue.</strong>
+		</noscript>
+	<div id=app></div>
+	<script src=js/chunk-vendors.11ca1f97.js> </script> 
+	<script src=js/app.374e1dd1.js> </script> 
+	<script src=js/chunk-vendors.0c898538.js> </script> 
+	<script src=js/app.bca46168.js> </script> 
+</body>
+		 <script>
+			 
+	
+    // 改进后的事件监听
+ 
+     // 改进后的事件监听
+		 window.onload = function () {
+        document.addEventListener('touchstart', function (event) {
+            if (event.touches.length > 1) {
+                event.preventDefault();
+            }
+        }, {
+            passive: false  // 关闭被动监听
+        });
+        var lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            var now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+		}, false);
+		document.addEventListener('gesturestart', function (event) {
+          event.preventDefault();
+        });
+	}
+
+
+
+			// function plusReady() {
+				// 获取本地应用资源版本号  
+				// plus.runtime.getProperty(plus.runtime.appid, function (inf) {
+				// 	wgtVer = inf.versionCode;
+				// 	console.log("当前应用版本：" + wgtVer);
+				// 	localStorage.setItem('newVer', wgtVer);
+				// 	if(localStorage.newVer!=wgtVer){
+				// 		window.localStorage.removeItem("newVer");
+				// 		localStorage.setItem('newVer', wgtVer);
+				// 	}
+				// });
+
+			// }
+// 		function checkUpdate() {
+// 		var checkUrl = "http://chat.zp600.com/api/api/check_version?version_id="+localStorage.newVer;
+// 			console.log(checkUrl)
+// 			console.log(localStorage.newVer)
+// 			plus.nativeUI.showWaiting("检测更新...");
+// 			var xhr = new XMLHttpRequest();
+// 			xhr.onreadystatechange = function () {
+// 				switch (xhr.readyState) {
+// 					case 4:
+// 						plus.nativeUI.closeWaiting();
+// 						if (xhr.status == 200) {
+// 							console.log("检测更新成功：" + xhr.responseText);
+// 							var newVer = JSON.parse(xhr.responseText).data.upcode
+
+// 							if (newVer == 0) {
+// 								plus.nativeUI.alert("您已是最新版本！");
+// 								return;
+// 							} else {
+// 								// 下载升级包  
+// 								downWgt(); 
+// 							}
+// 						} else {
+// 							console.log("检测更新失败！");
+// 							plus.nativeUI.alert("检测更新失败！");
+// 						}
+// 						break;
+// 					default:
+// 						break;
+
+// 				}
+// 			}
+// 			xhr.open('GET', checkUrl);
+// 			xhr.send();
+// 		}
+		// if (window.plus) {
+		// 	plusReady();
+		// } else {
+		// 	document.addEventListener('plusready', plusReady, false);
+		// }
+
+
+// 		// 下载wgt文件  
+// 		var wgtUrl = "http://chat.zp600.com/api/api/updatedownlod";
+// 		function downWgt() {
+// 			plus.nativeUI.showWaiting("下载升级包中文件...请勿关闭应用");
+// 			plus.downloader.createDownload(wgtUrl, { filename: "_doc/update/" }, function (d, status) {
+// 				console.log(d)
+// 				console.log(d.filename)
+// 				if (status == 200) {
+// 					console.log("下载wgt成功：" + d.filename);
+// 					installWgt(d.filename); // 安装wgt包  
+// 				} else {
+// 					console.log("下载wgt失败！");
+// 					plus.nativeUI.alert("下载wgt失败！");
+// 				}
+// 				plus.nativeUI.closeWaiting();
+// 			}).start();
+// 		}
+
+// 		function installWgt(path) {
+// 			plus.nativeUI.showWaiting("安装wgt文件...");
+// 			plus.runtime.install(path, {}, function () {
+// 				plus.nativeUI.closeWaiting();
+// 				console.log("安装wgt文件成功！应用即将重启");
+// 				plus.nativeUI.alert("应用资源更新完成！", function () {
+// 					//重启应用  
+// 					plus.runtime.restart();  
+// 				});
+// 			}, function (e) {
+// 				plus.nativeUI.closeWaiting();
+// 				console.log("安装wgt文件失败[" + e.code + "]：" + e.message);
+// 				plus.nativeUI.alert("安装wgt文件失败[" + e.code + "]：" + e.message);
+// 			});
+// 		}
+
+
+		// var setBadgeNumber = 0;
+		// function emptyout() {
+		// 	executeSQL("delete from messages");
+		// 	executeSQL("delete from messagegroup");
+		// 	executeSQL("delete from isfriend");
+		// 	executeSQL("delete from isroomgroup");
+		// }
+		// document.addEventListener("resume", function () {  // 后台切换到前台  
+		// 	console.log('后台切换到前台');
+		// 	plus.push.setAutoNotification(true);
+		// 	plus.push.clear();
+		// 	// plus.runtime.setBadgeNumber(0);
+		// }, false);
+
+
+		// function openintvaltion() {
+		// 	var main = plus.android.runtimeMainActivity();
+		// 	var pkName = main.getPackageName();
+		// 	var NotificationManagerCompat = plus.android.importClass("android.support.v4.app.NotificationManagerCompat");
+		// 	var packageNames = NotificationManagerCompat.from(main);
+		// 	console.log(JSON.stringify(packageNames));
+		// 	if (packageNames.areNotificationsEnabled()) {
+		// 		return 1;
+		// 		console.log('已开启通知权限');
+		// 	} else {
+		// 		return 0;
+		// 		startNation()
+		// 	}
+		// }
+		// function tasktoback() {
+		// 	let main = plus.android.runtimeMainActivity();
+		// 	main.moveTaskToBack(false);
+		// }
+		// function wakeLock() {
+		// 	//Android  
+		// 	plus.device.setWakelock(true);
+		// }
+
+
+		// function updatelist(origin_id, qname) {
+		// 	return executeSQL("update messages set roomnick = '" + qname + "'" + " where origin_id ='" + origin_id + "'")
+		// }
+
+
+
+		// function tongzhi(date, msg) {
+		// 	var options = { cover: true };
+		// 	var str = date;
+		// 	str += msg;
+		// 	plus.push.createMessage(str, options);
+		// 	// plus.runtime.setBadgeNumber(++setBadgeNumber);
+		// 	console.log(setBadgeNumber)
+		// }
+		// function startNation() {
+		// 	var main = plus.android.runtimeMainActivity(); //获取activity
+		// 	var pkName = main.getPackageName();
+		// 	var Uri = plus.android.importClass("android.net.Uri");
+		// 	var Settings = plus.android.importClass("android.provider.Settings");
+		// 	var context = plus.android.runtimeMainActivity();
+		// 	var packageURI = Uri.parse("package:" + pkName);
+		// 	var intent = plus.android.newObject("android.content.Intent", Settings.ACTION_APPLICATION_DETAILS_SETTINGS, packageURI);
+		// 	context.startActivity(intent);
+		// }
+
+		// openDB();
+		function openDB() {
+		 plus.sqlite.openDatabase({
+				name: 'first',
+				path: '_doc/test.db',
+				success: function (data) {
+					console.log('数据类创建成功' + JSON.stringify(data))
+					//uid发送者ID origin_id 来源id(好友ID或房间ID)usernick发送者的昵称 roomnick  群昵称 useravatar 发送者的图像 roomavatar群图像 msgtext 消息 type(1好友消息 2.群消息) send_time 发送时间
+					executeSQL("CREATE TABLE IF NOT EXISTS messages(id integer primary key  autoincrement,uid INTEGER null,origin_id char null,usernick char null,roomnick char null,useravatar char null,roomavatar char null,msgtext text null,type INTEGER null,send_time INTEGER null,status INTEGER null)");
+					//id主键 origin_id 来源ID(好友ID或房间ID),message_id 消息ID,type 分组类型(1好友 2房间) send_time(最后一条消息的时间) 
+					executeSQL("CREATE TABLE IF NOT EXISTS messagegroup(id integer primary key  autoincrement,origin_id char null UNIQUE,message_id INTEGER null,type INTEGER null,send_time INTEGER null,count INTEGER null)");
+				},
+				fail: function (e) {
+					console.log('数据类【first】创建失败' + JSON.stringify(e));
+				}
+			});
+		console.log(1111111111)
+		}
+
+		/**
+		 * 处理数据表
+		 * sql 语句
+		 * @return {array}
+		 */
+		// function executeSQL(sql) {
+		// 	return new Promise((open) => {
+		// 		plus.sqlite.executeSql({
+		// 			name: 'first',
+		// 			sql: sql,
+		// 			success: function (data) {
+		// 				console.log('数据表处理成功');
+		// 				open(1)
+		// 			},
+		// 			fail: function (e) {
+		// 				console.log('数据表处理失败' + JSON.stringify(e));
+		// 				open(0)
+		// 			}
+		// 		});
+		// 	})
+		// }
+
+		/**
+		 * 读取数据表
+		 *  sql 语句
+		 * @return {array}
+		//  */
+		// function selectSQL(sql) {
+		// 	console.log('selectSql 是一个方法，请求被调用')
+		// 	return new Promise((open) => {
+		
+		// 		plus.sqlite.selectSql({
+		// 			name: 'first',
+		// 			sql: sql,
+		// 			success: function (data) {
+		// 				console.log('数据表读取成功');
+		// 				open(data)
+		// 			},
+		// 			fail: function (e) {
+		// 				console.log('数据表读取失败' + JSON.stringify(e));
+		// 			}
+		// 		});
+		// 	})
+		// }
+
+		/**
+		 * 数据库初始化
+		 */
+
+
+		/** 
+		 * 获取消息列表
+		 * @return {array}
+		 */
+		// function selectmessage() {
+		// 	console.log('selectSql 是一个方法，请求被调用 one')
+		// 	return selectSQL("SELECT * FROM messagegroup AS g LEFT JOIN messages AS m ON g.message_id = m.id order by g.send_time asc")
+		// }
+
+		/**
+		 * 存入消息
+		 * arr 多维数组
+		 */
+		//   	function savemessage(arr) {
+		// // 	//循环写入数据库
+		// 	return new Promise((open) => {
+		// 		var a = 0;
+		// 		for (var i = 0; i < arr.length; i++) {
+		// 			var str = "";
+		// 			for (var s in arr[i]) {
+		// 				str += "'" + arr[i][s] + "',";
+		// 			}
+		// 			str = str.substr(0, str.length - 1);
+		// 			executeSQL("INSERT INTO messages VALUES(null," + str + ")").then(function (add_data) {
+		// 			});
+		// 			console.log('selectSql 是一个方法，请求被调用 two')
+		// 			selectSQL("select last_insert_rowid() as id from messages limit 1").then(function (query_data) {
+		// 				console.log('自增ID是:' + JSON.stringify(query_data))
+		// 				if (query_data[0]) {
+		// 					groupAdd(query_data[0].id).then(function (data) {
+		// 						a++;
+		// 						console.log(i)
+		// 						console.log(arr.length)
+		// 						if (i == a) {
+		// 							open(1)
+		// 						}
+		// 					})
+		// 				} else {
+		// 					console.log('未读取到自增ID')
+		// 				}
+
+		// 			});
+		// 		}
+
+		// 	})
+		// }
+
+		/**
+		 * 存入聊天组信息
+		 */
+		// function groupAdd(data) {
+		// 	return new Promise((open) => {
+		// 		console.log('selectSql 是一个方法，请求被调用 three')
+		// 		selectSQL("select * from messages where id = " + data).then(function (query) {
+		// 			if (query.length >= 1) {
+
+		// 				selectSQL("select *,count(status = CASE  WHEN status = 1 THEN status=1 ELSE null END) as count from messages where origin_id = '" + query[0].origin_id + "' and type = " + query[0].type + " group by origin_id order by id desc").then(function (query) {
+		// 					return query;
+		// 				}).then(function (data) {
+		// 					selectSQL("select * from messagegroup where origin_id = '" + data[0].origin_id + "' and type = " + data[0].type).then(function (querys) {
+		// 						var count = querys.length;
+		// 						console.log('数量是' + querys.length)
+		// 						if (count >= 1) {
+		// 							//有此聊天好友或群时
+		// 							executeSQL("update messagegroup set send_time = " + data[0].send_time + ",message_id = " + data[0].id + ",count = " + data[0].count + " where origin_id ='" + data[0].origin_id + "' and type = " + data[0].type).then(function (data) {
+		// 								open(1)
+		// 							})
+
+		// 						} else {
+		// 							//无此聊天好友或群时
+		// 							executeSQL("INSERT INTO messagegroup VALUES(null,'" + data[0].origin_id + "'," + data[0].id + "," + data[0].type + "," + data[0].send_time + "," + data[0].count + ")").then(function (data) {
+		// 								open(1)
+		// 							})
+
+		// 						}
+		// 					})
+		// 				})
+		// 			}
+		// 		})
+		// 	})
+		// }
+
+		/**
+		 * 撤回1分钟以内的一条消息
+		 */
+		// function withdrawone(id) {
+		// 	var minute = new Date(new Date().getTime() - 1 * 60 * 1000);//前一分钟
+		// 	var time1 = (Date.parse(minute)) / 1000;//前一分钟时间戳	 	
+		// 	 var timestamp =(Date.parse(new Date()))/1000//获取当前时间戳;
+		// 	return executeSQL("DELETE FROM messages where id=" + id + " and send_time-" + time1 + "<0")
+		// }
+
+		// /**
+		//  * 清除聊天当前记录
+		//  */
+		// function cleanscreen(origin_id) {
+		// 	return executeSQL("DELETE FROM messagegroup where  origin_id='" + origin_id + "'")
+		// }
+
+		/**
+		 * 移除消息
+		 */
+		// function removemsg(origin_id) {
+		// 	return executeSQL("DELETE FROM messages where  origin_id='" + origin_id + "'")
+		// }
+
+		// /**
+		//  * 改变消息状态
+		//  * origin_id 来源id
+		//  */
+		// function status(origin_id) {
+		// 	executeSQL("update messagegroup set count = 0 where origin_id ='" + origin_id + "'")
+		// 	return executeSQL("update messages set status = 2 where origin_id ='" + origin_id + "'")
+		// }
+
+		// /**
+		//  * 根据origin_id 展示消息组
+		//  */
+		// function originList(type, origin_id, currentpage) {
+		// 	console.log('selectSql 是一个方法，请求被调用 four')
+		// 	return selectSQL("SELECT * FROM messages where origin_id='" + origin_id + "' and type=" + type + " order by id desc Limit " + 30 * (currentpage - 1) + "," + 30 * currentpage)
+		// }
+				</script>
+
+</html>
